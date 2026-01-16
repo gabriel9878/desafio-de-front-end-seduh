@@ -97,14 +97,16 @@ export default function WeatherApp() {
     if (!weather) return "bg-black";
     const code = weather.current.condition.code;
     const isDay = weather.current.is_day;
-    
+
+
+
     // Códigos simples: 1000 = Sol/Limpo. 
     // Se for neve (códigos > 1114 aprox) ou nublado, usamos cinza.
     // Se for dia e limpo, azul.
     //2caeff
     // Exemplo simplificado (pode expandir a lógica):
-    if (code === 1000 && isDay) return "bg-[#2CAEFF]"; // Azul da Foto 2
-    if (code === 1000 && !isDay) return "bg-[#1A2C42]"; // Azul Noite
+    if (code === 1000 && isDay == 1) return "bg-[#2CAEFF]"; // Azul da Foto 2
+    if (code === 1000 && isDay == 0) return "bg-[#1A2C42]"; // Azul Noite
     return "bg-[#CCCCCC] text-gray-800"; // Cinza da Foto 1 (Neve/Nublado)
   };
 
@@ -156,15 +158,15 @@ export default function WeatherApp() {
   // --- RENDERIZAÇÃO: TELA DE SELEÇÃO (FOTO TELA 3) ---
   if (!selectedCity) {
     return (
-  <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
+      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-2">Weather</h1>
           <p className="text-gray-400 text-sm">Select a city</p>
         </header>
 
         <div className="mb-12">
-           {/* Ícone de Globo Estilizado */}
-           <Globe size={80} strokeWidth={1} className="text-white" />
+          {/* Ícone de Globo Estilizado */}
+          <Globe size={80} strokeWidth={1} className="text-white" />
         </div>
 
         <div className="grid grid-cols-3 gap-x-8 gap-y-12 max-w-md w-full text-center">
@@ -195,7 +197,7 @@ export default function WeatherApp() {
   const current = weather.current;
   const today = weather.forecast.forecastday[0];
   const textColor = getBgColor().includes("bg-[#CCCCCC]") ? "text-gray-800" : "text-white";
-  
+
   // Mapeando horas específicas para "Dawn, Morning, Afternoon, Night"
   // WeatherAPI retorna array 'hour' de 0 a 23.
   const timePoints = [
@@ -223,12 +225,16 @@ export default function WeatherApp() {
       </div>
 
       {/* Temperatura Principal */}
-      <div className="text-center mb-8 relative">
-        <div className="text-[8rem] leading-none font-thin tracking-tighter">
-          {Math.round(current.temp_c)}
-          <span className="text-4xl align-top absolute mt-4">°C</span>
+      <div className="relative flex justify-center mb-8">
+        <div className="flex items-start">
+          <span className="text-[6rem] leading-none font-thin tracking-tighter">
+            {Math.round(current.temp_c)}
+          </span>
+          <span className="text-4xl pt-2 pl-4">
+            °<span className="ml-1">C</span>
+          </span>
         </div>
-        <div className="flex flex-col absolute right-[-40px] top-[40%] text-sm opacity-80">
+        <div className="flex flex-col absolute right-[-0px] top-[64%] text-xs opacity-80">
           <span>↑ {Math.round(today.day.maxtemp_c)}°</span>
           <span>↓ {Math.round(today.day.mintemp_c)}°</span>
         </div>
