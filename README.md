@@ -5,7 +5,7 @@ O foco principal foi entregar uma experiência consistente entre diferentes disp
 
 > Este repositório também é publicado via **GitHub Pages**, onde este próprio `README.md` pode ser consultado juntamente com o link da aplicação em produção.
 
----
+----
 
 ## 🔗 Links
 
@@ -15,7 +15,7 @@ O foco principal foi entregar uma experiência consistente entre diferentes disp
 - **GitHub Pages (documentação / README):**  
   https://gabriel9878.github.io/desafio-de-front-end-seduh/
 
----
+----
 
 ## ✨ Funcionalidades
 
